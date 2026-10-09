@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator – Calculate Your Exact Age in Years, Months &amp; Days</title>
+<meta name="description" content="Free online age calculator. Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth. Find your next birthday and day of birth.">
+<meta name="keywords" content="age calculator, calculate age, age calculator online, date of birth calculator, how old am i, age in years months days, birthday calculator, exact age calculator, chronological age, age difference calculator">
+<meta name="robots" content="index, follow">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+  body {
+    background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  .age-card {
+    max-width: 560px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem 2rem 2rem;
+    box-shadow: 0 20px 50px -20px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    color: #fff;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 20px -8px rgba(99, 102, 241, 0.5);
+  }
+
+  .header-icon svg { width: 28px; height: 28px; }
+
+  .header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #0f172a;
+    margin-bottom: 0.3rem;
+  }
+
+  .header p {
+    font-size: 0.92rem;
+    color: #64748b;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #0f172a;
+    transition: 0.2s;
+    font-family: inherit;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 0.95rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.2px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    color: #ffffff;
+    box-shadow: 0 8px 20px -8px rgba(99, 102, 241, 0.6);
+  }
+
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(99, 102, 241, 0.7); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    flex: 0 0 100px;
+  }
+
+  .btn-secondary:hover { background: #e2e8f0; }
+
+  .error-msg {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .error-msg.show { display: block; }
+
+  /* ============ RESULT ============ */
+  .result {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1.5px dashed #e2e8f0;
+    display: none;
+  }
+
+  .result.show { display: block; animation: fadeUp 0.4s ease both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .big-age {
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .big-age .num {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .big-age .label {
+    font-size: 1rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 0.3rem;
+  }
+
+  .breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .breakdown-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1rem 0.5rem;
+    text-align: center;
+  }
+
+  .breakdown-item .n {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .breakdown-item .l {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #94a3b8;
+    margin-top: 0.3rem;
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.7rem 0;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.9rem;
+  }
+
+  .info-row:first-of-type { border-top: none; }
+
+  .info-row .ico {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #6366f1;
+    margin-top: 1px;
+  }
+
+  .info-row .ico svg { width: 100%; height: 100%; }
+
+  .info-row .lbl { color: #64748b; }
+  .info-row .val { color: #0f172a; font-weight: 600; margin-left: 4px; }
+
+  .footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .age-card { padding: 1.8rem 1.3rem 1.5rem; border-radius: 20px; }
+    .header h1 { font-size: 1.35rem; }
+    .big-age .num { font-size: 3.5rem; letter-spacing: -2px; }
+    .breakdown-item .n { font-size: 1.15rem; }
+    .breakdown { gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="age-card">
+  <div class="header">
+    <div class="header-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+    </div>
+    <h1>Age Calculator</h1>
+    <p>Find your exact age in years, months and days</p>
+  </div>
+
+  <div class="form-group">
+    <label for="dob">Date of Birth</label>
+    <input type="date" id="dob" required>
+  </div>
+
+  <div class="form-group">
+    <label for="toDate">Calculate Age As Of</label>
+    <input type="date" id="toDate">
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="calcBtn" type="button">Calculate Age</button>
+    <button class="btn btn-secondary" id="resetBtn" type="button">Reset</button>
+  </div>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="result" id="result">
+    <div class="result-title">Your Age</div>
+
+    <div class="big-age">
+      <div class="num" id="yearsNum">0</div>
+      <div class="label" id="yearsLabel">years old</div>
+    </div>
+
+    <div class="breakdown">
+      <div class="breakdown-item">
+        <div class="n" id="monthsNum">0</div>
+        <div class="l">Months</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="n" id="daysNum">0</div>
+        <div class="l">Days</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="n" id="totalDaysNum">0</div>
+        <div class="l">Total Days</div>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </span>
+      <span><span class="lbl">Total hours:</span><span class="val" id="hoursVal">0</span></span>
+    </div>
+
+    <div class="info-row">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </span>
+      <span><span class="lbl">Total minutes:</span><span class="val" id="minutesVal">0</span></span>
+    </div>
+
+    <div class="info-row">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </span>
+      <span><span class="lbl">Total seconds:</span><span class="val" id="secondsVal">0</span></span>
+    </div>
+
+    <div class="info-row">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span><span class="lbl">You were born on a</span><span class="val" id="dayOfWeekVal">—</span></span>
+    </div>
+
+    <div class="info-row">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span><span class="lbl">Next birthday in</span><span class="val" id="nextBirthdayVal">—</span></span>
+    </div>
+  </div>
+
+  <div class="footer">
+    Your data stays in your browser — nothing is sent to any server.
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  function boot() {
+    var dobInput = document.getElementById("dob");
+    var toDateInput = document.getElementById("toDate");
+    var calcBtn = document.getElementById("calcBtn");
+    var resetBtn = document.getElementById("resetBtn");
+    var errorMsg = document.getElementById("errorMsg");
+    var resultBox = document.getElementById("result");
+
+    var yearsNum = document.getElementById("yearsNum");
+    var yearsLabel = document.getElementById("yearsLabel");
+    var monthsNum = document.getElementById("monthsNum");
+    var daysNum = document.getElementById("daysNum");
+    var totalDaysNum = document.getElementById("totalDaysNum");
+    var hoursVal = document.getElementById("hoursVal");
+    var minutesVal = document.getElementById("minutesVal");
+    var secondsVal = document.getElementById("secondsVal");
+    var dayOfWeekVal = document.getElementById("dayOfWeekVal");
+    var nextBirthdayVal = document.getElementById("nextBirthdayVal");
+
+    // Default the "as of" date to today
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var dd = String(today.getDate()).padStart(2, "0");
+    toDateInput.value = yyyy + "-" + mm + "-" + dd;
+
+    // Max selectable date = today for both inputs
+    dobInput.max = toDateInput.value;
+    toDateInput.max = toDateInput.value;
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.add("show");
+      resultBox.classList.remove("show");
+    }
+
+    function hideError() {
+      errorMsg.classList.remove("show");
+    }
+
+    function parseDateInput(value) {
+      // value is "YYYY-MM-DD"
+      var parts = value.split("-");
+      if (parts.length !== 3) return null;
+      var y = parseInt(parts[0], 10);
+      var m = parseInt(parts[1], 10);
+      var d = parseInt(parts[2], 10);
+      if (isNaN(y) || isNaN(m) || isNaN(d)) return null;
+      return new Date(y, m - 1, d);
+    }
+
+    function formatNumber(n) {
+      return n.toLocaleString("en-US");
+    }
+
+    function calculateAge() {
+      hideError();
+
+      var dobStr = dobInput.value;
+      var toStr = toDateInput.value;
+
+      if (!dobStr) {
+        showError("Please select your date of birth.");
+        return;
+      }
+      if (!toStr) {
+        showError("Please select the 'as of' date.");
+        return;
+      }
+
+      var dob = parseDateInput(dobStr);
+      var to = parseDateInput(toStr);
+
+      if (!dob || !to) {
+        showError("Please enter valid dates.");
+        return;
+      }
+
+      if (dob > to) {
+        showError("Date of birth cannot be after the 'as of' date.");
+        return;
+      }
+
+      // ---------- Years, months, days ----------
+      var years = to.getFullYear() - dob.getFullYear();
+      var months = to.getMonth() - dob.getMonth();
+      var days = to.getDate() - dob.getDate();
+
+      if (days < 0) {
+        months--;
+        // days in the previous month of the "to" date
+        var prevMonth = new Date(to.getFullYear(), to.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      // ---------- Totals ----------
+      var msPerDay = 24 * 60 * 60 * 1000;
+      var diffMs = to.getTime() - dob.getTime();
+      var totalDays = Math.floor(diffMs / msPerDay);
+      var totalHours = Math.floor(diffMs / (60 * 60 * 1000));
+      var totalMinutes = Math.floor(diffMs / (60 * 1000));
+      var totalSeconds = Math.floor(diffMs / 1000);
+
+      // ---------- Day of week born ----------
+      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var bornOn = dayNames[dob.getDay()];
+
+      // ---------- Next birthday ----------
+      var nextBd = new Date(to.getFullYear(), dob.getMonth(), dob.getDate());
+      if (nextBd < to) {
+        nextBd = new Date(to.getFullYear() + 1, dob.getMonth(), dob.getDate());
+      }
+      var bdDiffDays = Math.floor((nextBd.getTime() - to.getTime()) / msPerDay);
+      var nextBdText;
+      if (bdDiffDays === 0) {
+        nextBdText = "🎉 Today! Happy Birthday!";
+      } else if (bdDiffDays === 1) {
+        nextBdText = "Tomorrow";
+      } else {
+        nextBdText = bdDiffDays + " days";
+      }
+
+      // ---------- Update UI ----------
+      yearsNum.textContent = years;
+      yearsLabel.textContent = years === 1 ? "year old" : "years old";
+      monthsNum.textContent = months;
+      daysNum.textContent = days;
+      totalDaysNum.textContent = formatNumber(totalDays);
+      hoursVal.textContent = formatNumber(totalHours);
+      minutesVal.textContent = formatNumber(totalMinutes);
+      secondsVal.textContent = formatNumber(totalSeconds);
+      dayOfWeekVal.textContent = bornOn;
+      nextBirthdayVal.textContent = nextBdText;
+
+      resultBox.classList.add("show");
+    }
+
+    function resetAll() {
+      dobInput.value = "";
+      var now = new Date();
+      var y = now.getFullYear();
+      var m = String(now.getMonth() + 1).padStart(2, "0");
+      var d = String(now.getDate()).padStart(2, "0");
+      toDateInput.value = y + "-" + m + "-" + d;
+      dobInput.max = toDateInput.value;
+      toDateInput.max = toDateInput.value;
+      hideError();
+      resultBox.classList.remove("show");
+    }
+
+    calcBtn.addEventListener("click", calculateAge);
+    resetBtn.addEventListener("click", resetAll);
+
+    // Allow pressing Enter in either input
+    dobInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") calculateAge();
+    });
+    toDateInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") calculateAge();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>
