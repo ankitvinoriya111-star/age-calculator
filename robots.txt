@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ankitvinoriya111-star.github.io/age-calculator/sitemap.xml
