@@ -1,277 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta name="google-site-verification" content="NO9zMCY0na7ajRZXFcIJGeW4KSfEn2T6N55DPI3FQ54" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Age Calculator – Calculate Your Exact Age in Years, Months &amp; Days</title>
-<meta name="description" content="Free online age calculator. Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth. Find your next birthday and day of birth.">
-<meta name="keywords" content="age calculator, calculate age, age calculator online, date of birth calculator, how old am i, age in years months days, birthday calculator, exact age calculator, chronological age, age difference calculator">
-<meta name="robots" content="index, follow">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  <meta name="google-site-verification" content="NO9zMCY0na7ajRZXFcIJGeW4KSfEn2T6N55DPI3FQ54" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator – Calculate Your Exact Age in Years, Months &amp; Days</title>
+  <meta name="description" content="Free online age calculator. Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth. Find your next birthday and day of birth.">
+  <meta name="keywords" content="age calculator, calculate age, age calculator online, date of birth calculator, how old am i, age in years months days, birthday calculator, exact age calculator, chronological age, age difference calculator">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ankitvinoriya111-star.github.io/age-calculator/">
 
-  body {
-    background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 1rem;
-    color: #1a1a1a;
-    line-height: 1.6;
+  <meta property="og:title" content="Age Calculator – Calculate Your Exact Age in Years, Months &amp; Days">
+  <meta property="og:description" content="Free online age calculator. Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth. Find your next birthday and day of birth.">
+  <meta property="og:url" content="https://ankitvinoriya111-star.github.io/age-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Age Calculator">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Age Calculator – Calculate Your Exact Age in Years, Months &amp; Days">
+  <meta name="twitter:description" content="Free online age calculator. Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth.">
+  <meta name="theme-color" content="#6366f1">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Age Calculator",
+    "url": "https://ankitvinoriya111-star.github.io/age-calculator/",
+    "description": "Free online age calculator. Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth. Find your next birthday and day of birth.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "isAccessibleForFree": true,
+    "inLanguage": "en"
   }
+  </script>
 
-  .age-card {
-    max-width: 560px;
-    width: 100%;
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 2.5rem 2rem 2rem;
-    box-shadow: 0 20px 50px -20px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.04);
-  }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
-  .header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
+    body {
+      background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
 
-  .header-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    color: #fff;
-    margin-bottom: 1rem;
-    box-shadow: 0 10px 20px -8px rgba(99, 102, 241, 0.5);
-  }
+    .age-card {
+      max-width: 560px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem 2rem 2rem;
+      box-shadow: 0 20px 50px -20px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.04);
+    }
 
-  .header-icon svg { width: 28px; height: 28px; }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-  .header h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: #0f172a;
-    margin-bottom: 0.3rem;
-  }
+    .header-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff;
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 20px -8px rgba(99, 102, 241, 0.5);
+    }
 
-  .header p {
-    font-size: 0.92rem;
-    color: #64748b;
-  }
+    .header-icon svg { width: 28px; height: 28px; }
 
-  .form-group {
-    margin-bottom: 1.2rem;
-  }
+    .header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      margin-bottom: 0.3rem;
+    }
 
-  .form-group label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 0.5rem;
-  }
+    .header p {
+      font-size: 0.92rem;
+      color: #64748b;
+    }
 
-  .form-group input {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    font-size: 1rem;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
-    background: #f8fafc;
-    color: #0f172a;
-    transition: 0.2s;
-    font-family: inherit;
-  }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
 
-  .form-group input:focus {
-    outline: none;
-    border-color: #6366f1;
-    background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
-  }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 0.5rem;
+    }
 
-  .btn-row {
-    display: flex;
-    gap: 0.6rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
+    .form-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #0f172a;
+      transition: 0.2s;
+      font-family: inherit;
+    }
 
-  .btn {
-    flex: 1;
-    padding: 0.95rem 1.2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.2s;
-    font-family: inherit;
-    letter-spacing: 0.2px;
-  }
+    .form-group input:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    }
 
-  .btn-primary {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    color: #ffffff;
-    box-shadow: 0 8px 20px -8px rgba(99, 102, 241, 0.6);
-  }
+    .btn-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
 
-  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(99, 102, 241, 0.7); }
-  .btn-primary:active { transform: translateY(0); }
+    .btn {
+      flex: 1;
+      padding: 0.95rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+      letter-spacing: 0.2px;
+    }
 
-  .btn-secondary {
-    background: #f1f5f9;
-    color: #475569;
-    border: 1.5px solid #e2e8f0;
-    flex: 0 0 100px;
-  }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      box-shadow: 0 8px 20px -8px rgba(99, 102, 241, 0.6);
+    }
 
-  .btn-secondary:hover { background: #e2e8f0; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(99, 102, 241, 0.7); }
+    .btn-primary:active { transform: translateY(0); }
 
-  .error-msg {
-    background: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-    font-size: 0.88rem;
-    margin-top: 1rem;
-    display: none;
-  }
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1.5px solid #e2e8f0;
+      flex: 0 0 100px;
+    }
 
-  .error-msg.show { display: block; }
+    .btn-secondary:hover { background: #e2e8f0; }
 
-  /* ============ RESULT ============ */
-  .result {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1.5px dashed #e2e8f0;
-    display: none;
-  }
+    .btn:focus-visible,
+    .form-group input:focus-visible {
+      outline: 3px solid rgba(99, 102, 241, 0.35);
+      outline-offset: 2px;
+    }
 
-  .result.show { display: block; animation: fadeUp 0.4s ease both; }
+    .error-msg {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      margin-top: 1rem;
+      display: none;
+    }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    .error-msg.show { display: block; }
 
-  .result-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #94a3b8;
-    text-align: center;
-    margin-bottom: 1.2rem;
-  }
+    /* ============ RESULT ============ */
+    .result {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1.5px dashed #e2e8f0;
+      display: none;
+    }
 
-  .big-age {
-    text-align: center;
-    margin-bottom: 1.8rem;
-  }
+    .result.show { display: block; animation: fadeUp 0.4s ease both; }
 
-  .big-age .num {
-    font-size: 4.5rem;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -3px;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-  .big-age .label {
-    font-size: 1rem;
-    color: #64748b;
-    font-weight: 600;
-    margin-top: 0.3rem;
-  }
+    .result-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
 
-  .breakdown {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.7rem;
-    margin-bottom: 1.5rem;
-  }
+    .big-age {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
 
-  .breakdown-item {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
-    padding: 1rem 0.5rem;
-    text-align: center;
-  }
+    .big-age .num {
+      font-size: 4.5rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -3px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  .breakdown-item .n {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.1;
-    font-variant-numeric: tabular-nums;
-  }
+    .big-age .label {
+      font-size: 1rem;
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
 
-  .breakdown-item .l {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #94a3b8;
-    margin-top: 0.3rem;
-  }
+    .breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
 
-  .info-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    padding: 0.7rem 0;
-    border-top: 1px solid #f1f5f9;
-    font-size: 0.9rem;
-  }
+    .breakdown-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+    }
 
-  .info-row:first-of-type { border-top: none; }
+    .breakdown-item .n {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
 
-  .info-row .ico {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-    color: #6366f1;
-    margin-top: 1px;
-  }
+    .breakdown-item .l {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+    }
 
-  .info-row .ico svg { width: 100%; height: 100%; }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.7rem 0;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.9rem;
+    }
 
-  .info-row .lbl { color: #64748b; }
-  .info-row .val { color: #0f172a; font-weight: 600; margin-left: 4px; }
+    .info-row:first-of-type { border-top: none; }
 
-  .footer {
-    text-align: center;
-    font-size: 0.78rem;
-    color: #94a3b8;
-    margin-top: 1.5rem;
-  }
+    .info-row .ico {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      color: #6366f1;
+      margin-top: 1px;
+    }
 
-  @media (max-width: 480px) {
-    .age-card { padding: 1.8rem 1.3rem 1.5rem; border-radius: 20px; }
-    .header h1 { font-size: 1.35rem; }
-    .big-age .num { font-size: 3.5rem; letter-spacing: -2px; }
-    .breakdown-item .n { font-size: 1.15rem; }
-    .breakdown { gap: 0.5rem; }
-  }
-</style>
+    .info-row .ico svg { width: 100%; height: 100%; }
+
+    .info-row .lbl { color: #64748b; }
+    .info-row .val { color: #0f172a; font-weight: 600; margin-left: 4px; }
+
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .age-card { padding: 1.8rem 1.3rem 1.5rem; border-radius: 20px; }
+      .header h1 { font-size: 1.35rem; }
+      .big-age .num { font-size: 3.5rem; letter-spacing: -2px; }
+      .breakdown-item .n { font-size: 1.15rem; }
+      .breakdown { gap: 0.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="age-card">
-  <div class="header">
+<main class="age-card">
+  <header class="header">
     <div class="header-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
         <rect x="3" y="4" width="18" height="18" rx="2"/>
         <line x1="16" y1="2" x2="16" y2="6"/>
         <line x1="8" y1="2" x2="8" y2="6"/>
@@ -280,7 +313,7 @@
     </div>
     <h1>Age Calculator</h1>
     <p>Find your exact age in years, months and days</p>
-  </div>
+  </header>
 
   <div class="form-group">
     <label for="dob">Date of Birth</label>
@@ -297,10 +330,10 @@
     <button class="btn btn-secondary" id="resetBtn" type="button">Reset</button>
   </div>
 
-  <div class="error-msg" id="errorMsg"></div>
+  <div class="error-msg" id="errorMsg" role="alert"></div>
 
-  <div class="result" id="result">
-    <div class="result-title">Your Age</div>
+  <section class="result" id="result" aria-live="polite" aria-labelledby="resultTitle">
+    <h2 class="result-title" id="resultTitle">Your Age</h2>
 
     <div class="big-age">
       <div class="num" id="yearsNum">0</div>
@@ -324,7 +357,7 @@
 
     <div class="info-row">
       <span class="ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
       </span>
@@ -333,7 +366,7 @@
 
     <div class="info-row">
       <span class="ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
       </span>
@@ -342,7 +375,7 @@
 
     <div class="info-row">
       <span class="ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
       </span>
@@ -351,7 +384,7 @@
 
     <div class="info-row">
       <span class="ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
         </svg>
       </span>
@@ -360,18 +393,18 @@
 
     <div class="info-row">
       <span class="ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
         </svg>
       </span>
       <span><span class="lbl">Next birthday in</span><span class="val" id="nextBirthdayVal">—</span></span>
     </div>
-  </div>
+  </section>
 
   <div class="footer">
     Your data stays in your browser — nothing is sent to any server.
   </div>
-</div>
+</main>
 
 <script>
 (function () {
